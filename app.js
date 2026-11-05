@@ -32,9 +32,16 @@ if(whNow){
  if(S.wh==='tank')add('Water Heater Flush (Do First)','Power/gas to pilot or off, cold supply off, hose to drain, open valve and a hot tap; flush until clear, close, refill with hot tap open until steady flow, restore power. Let it reheat while you work.','Data plate, before/after flush water in bucket',25,'First');
  else add('Tankless Descale (Do First)','Isolation valves off, pump + hoses on service ports, vinegar or descaler recirculate 45–60 min while you continue. Come back to flush, clean inlet screen, restore.','Data plate, service ports connected',25,'First');
 }
+// Mechanical area together while water heater runs (or right after arrive if no WH)
+const doFilt=fullOrMid||S.visit==='Mar'||S.visit==='Sep';
+const doHum=has('humidifier')&&(isFall||se==='winter');
+const doDeh=has('dehum')&&(se==='summer'||isSpring);
+const whileWH=whNow?' While water heater runs — same mechanical area.':' Same mechanical area.';
+if(doFilt)add('Furnace Filter'+(twoX>1?'s':''),'Note size and MERV, replace, write date on edge, confirm airflow arrow.'+whileWH,'Old vs new filter, size label',10*twoX);
+if(doHum)add('Humidifier Pad Swap And Service','Water off, replace pad, clean tray and distribution, set humidistat for season.'+whileWH,'Old vs new pad',15);
+if(doDeh)add('Dehumidifier Check','Clean filter, empty/check drain line, confirm setting 45–50%.'+whileWH,'Setting and drain',5);
 const lightMin=k==='light';
 add('Moisture Scan',lightMin?'Quick pinless meter pass: under sinks, around water heater, basement walls. Log room/location of any damp spot for the end-of-visit drone check.':'Pinless meter + thermal camera: ceilings under baths, windows, basement walls, under sinks. Log readings and exact room/location of each damp spot for the end-of-visit drone check.','Any reading over baseline, thermal image of flagged spots',lightMin?10:25);
-if(fullOrMid||S.visit==='Mar'||S.visit==='Sep')add('Furnace Filter'+(twoX>1?'s':''),'Note size and MERV, replace, write date on edge, confirm airflow arrow.','Old vs new filter, size label',10*twoX);
 if(full||(P!=='ess'&&fullOrMid))add('Smoke And CO Checks',isFall?'Test every unit, swap all batteries, check manufacture dates (replace over 10 yrs).':'Test every unit, check manufacture dates.','Any expired or failed detector',10);
 if(full&&isSpring)add('Dryer Vent Cleaning','Pull dryer, disconnect duct, brush/vacuum duct to exterior hood, check hood flap, reconnect with foil tape.','Lint removed, exterior hood',25);
 if(plus&&full&&(isSpring||isFall))add('Gutter And Downspout Cleaning','Clear gutters, flush downspouts, check splash blocks and grading.','Before/after gutter sections',45);
@@ -42,8 +49,6 @@ if(plus&&fullOrMid&&has('garage')&&(S.visit==='q3'||S.visit==='Jul'||S.visit==='
 if(plus&&has('softener'))add('Water Softener Salt Top-Off','Check salt level, break any bridge, top off, confirm regen settings.','Brine tank level',5);
 if(plus&&has('fridge')&&fullOrMid)add('Fridge Water Filter','Replace filter, flush 2–3 gallons, reset indicator.','Filter model and date',5);
 if(has('sump')&&(isSpring||S.visit==='Mar'||S.visit==='q1'))add('Sump Pump Test','Pour water into pit until float triggers, confirm discharge outside and check valve works.','Pump running, discharge point',10);
-if(has('humidifier')&&(isFall||se==='winter'))add('Humidifier Pad Swap And Service','Water off, replace pad, clean tray and distribution, set humidistat for season.','Old vs new pad',15);
-if(has('dehum')&&(se==='summer'||isSpring))add('Dehumidifier Check','Clean filter, empty/check drain line, confirm setting 45–50%.','Setting and drain',5);
 if(has('irrigation')&&(isSpring||isFall))add(isSpring?'Irrigation Start-Up Check':'Irrigation Winterize Check',isSpring?'Open supply, run each zone, look for broken heads and leaks, set controller.':'Shut supply, drain or confirm blow-out booked, controller to off.','Controller, any broken heads',20);
 if(full&&isSpring)add('Season Job: Spring Checks','Grading and downspouts, window wells, washing machine hoses, toilet dye test, caulk at tubs and sinks.','Any failing caulk or hose',15);
 if(full&&isFall||S.scn.has('freeze'))add('Winter Freeze Prep','Shut and drain outdoor hose bibs, check exposed pipes'+(has('crawl')?' and close crawlspace vents':'')+', thermostat battery and settings.','Each hose bib shut off',15);
