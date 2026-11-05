@@ -1,0 +1,35 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light only">
+<title>Smart Upkeep Visit Playbook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;600&family=Khand:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:light only;--t:#0a0a0a;--m:#737373;--b:#e5e5e5;--be:#e3ddd2;--band:#FAF6EE;--acc:#C1502E}
+*{box-sizing:border-box}body{margin:0;background:#fff;color:var(--t);font:16px/1.45 Hind,system-ui,sans-serif}
+main{max-width:720px;margin:auto;padding:16px}h1,h2,h3{font-family:Khand,Hind,sans-serif;font-weight:700;margin:.2em 0}
+h1{font-size:32px}.sub{color:var(--m);margin:0 0 12px}
+.lbl{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--m);margin:14px 0 6px;font-weight:600}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1px solid #171717;background:#fff;padding:8px 10px;font:inherit;font-size:14px;cursor:pointer;min-height:40px;transition:transform .1s}
+.chip:hover{transform:translateY(-1px)}.chip.on{background:#171717;color:#fafafa}.chip.off{opacity:.35;pointer-events:none}
+.panel{background:var(--band);border:1px solid var(--be);padding:12px 14px}
+#go{display:block;width:100%;margin:16px 0;padding:14px;font:700 22px Khand,sans-serif;background:var(--acc);color:#fff;border:0;cursor:pointer;letter-spacing:.05em}
+ol{padding:0;list-style:none;counter-reset:s}li.step{counter-increment:s;border:1px solid var(--b);padding:10px 12px 10px 52px;margin:8px 0;position:relative}
+li.step:before{content:counter(s);position:absolute;left:10px;top:10px;width:30px;height:30px;border:1px solid #171717;display:grid;place-items:center;font:700 18px Khand}
+li.first{border-color:var(--acc)}li.first:before{background:var(--acc);color:#fff;border-color:var(--acc)}
+.st{font-weight:600}.how{color:#333;font-size:14px;margin:2px 0}.ph{font-size:13px;color:#05668D}.tm{float:right;font-size:13px;color:var(--m)}
+.tag{font-size:11px;text-transform:uppercase;letter-spacing:.08em;border:1px solid var(--be);padding:1px 5px;margin-left:6px;color:var(--m)}
+.sum{display:flex;gap:16px;flex-wrap:wrap;font-size:14px}.sum b{font-family:Khand;font-size:22px;display:block}
+footer{text-align:center;color:var(--m);font-size:13px;padding:24px 0}#share{border:1px solid #171717;background:#fff;padding:10px 20px;font:inherit;cursor:pointer;margin-bottom:10px}
+</style></head><body><main>
+<h1>Visit Playbook</h1><p class="sub">Smart Upkeep. Pick the visit, press Submit, get the step-by-step.</p>
+<div class="panel">
+<div class="lbl">Plan</div><div class="chips" id="plan"></div>
+<div class="lbl">Visit</div><div class="chips" id="visit"></div>
+<div class="lbl">Water Heater</div><div class="chips" id="wh"></div>
+<div class="lbl">Owned Systems And Extras</div><div class="chips" id="sys"></div>
+<div class="lbl">Add-Ons Riding Along</div><div class="chips" id="add"></div>
+<div class="lbl">Scenario</div><div class="chips" id="scn"></div>
+</div>
+<button id="go">Submit</button>
+<section id="out"></section>
+<footer><button id="share">Share</button><div>Built by Machan</div></footer>
+</main><script src="app.js"></script></body></html>
