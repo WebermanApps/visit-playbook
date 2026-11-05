@@ -1,7 +1,7 @@
 const PLANS={ess:{n:'Essentials',p:139,visits:[['spring','Spring'],['fall','Fall']]},
 plus:{n:'Plus',p:209,visits:[['q1','Q1 Winter (Jan)'],['spring','Q2 Spring (Apr)'],['q3','Q3 Summer (Jul)'],['fall','Q4 Fall (Oct)']]},
 comp:{n:'Complete',p:379,visits:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'].map(m=>[m,m])}};
-const SYS=[['irrigation','Irrigation'],['sump','Sump Pump'],['humidifier','Humidifier'],['dehum','Dehumidifier'],['softener','Water Softener (Plus+)'],['fridge','Fridge Water Filter (Plus+)'],['garage','Garage Door (Plus+)'],['pool','Pool / Hot Tub'],['crawl','Crawlspace'],['twoFurn','2+ Furnaces / ACs']];
+const SYS=[['irrigation','Irrigation'],['sump','Sump Pump'],['humidifier','Humidifier'],['dehum','Dehumidifier'],['softener','Water Softener (Plus+)'],['fridge','Fridge Water Filter (Plus+)'],['garage','Garage Door (Plus+)'],['crawl','Crawlspace'],['twoFurn','2+ Furnaces / ACs']];
 const ADD=[['chimney','Chimney Sweep Quote'],['ducts','Duct Cleaning Quote'],['generator','Generator Service Quote'],['radon','Radon Test'],['guttersExtra','Extra Gutter Cleaning'],['caulk','Caulk Repair Quote'],['leak','Leak Sensors Install'],['sumpBackup','Sump Backup Quote'],['bathFan','Bath Fan Quote']];
 const S={plan:'ess',visit:'spring',wh:'tank',sys:new Set(),add:new Set(),scn:new Set()};
 const $=id=>document.getElementById(id);
@@ -46,7 +46,6 @@ if(has('sump')&&(isSpring||S.visit==='Mar'||S.visit==='q1'))add('Sump Pump Test'
 if(has('humidifier')&&(isFall||se==='winter'))add('Humidifier Pad Swap And Service','Water off, replace pad, clean tray and distribution, set humidistat for season.','Old vs new pad',15);
 if(has('dehum')&&(se==='summer'||isSpring))add('Dehumidifier Check','Clean filter, empty/check drain line, confirm setting 45–50%.','Setting and drain',5);
 if(has('irrigation')&&(isSpring||isFall))add(isSpring?'Irrigation Start-Up Check':'Irrigation Winterize Check',isSpring?'Open supply, run each zone, look for broken heads and leaks, set controller.':'Shut supply, drain or confirm blow-out booked, controller to off.','Controller, any broken heads',20);
-if(has('pool'))add('Pool / Hot Tub Check','Visual check of equipment, leaks and cover; note anything for homeowner.','Equipment pad',5);
 if(full&&isSpring)add('Season Job: Spring Checks','Grading and downspouts, window wells, washing machine hoses, toilet dye test, caulk at tubs and sinks.','Any failing caulk or hose',15);
 if(full&&isFall||S.scn.has('freeze'))add('Winter Freeze Prep','Shut and drain outdoor hose bibs, check exposed pipes'+(has('crawl')?' and close crawlspace vents':'')+', thermostat battery and settings.','Each hose bib shut off',15);
 if(se==='summer'&&fullOrMid)add('Season Job: Summer Checks','Range hood filter clean, fridge coils, attic insulation look, dehumidifier settings.','Coils before/after',15);
